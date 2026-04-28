@@ -43,6 +43,14 @@ jobs:
          with: 
            resource-group: ${{ secrets.AKS_RESOURCE_GROUP }} 
            cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+ 
+       - name: Deploy to AKS
+         uses: Azure/k8s-deploy@v4
+         with: 
+          mainfest: |
+           kubernetes/deployment.yaml
+           kubernetes/service.yaml
+          images:
+           ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}/${{ secrets.IMAGE_NAME }}:latest
 
-      
 
