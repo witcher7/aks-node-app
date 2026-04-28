@@ -37,3 +37,12 @@ jobs:
        - name: Push image to ACR
          run: |
            docker push ${{ secrets.AZURE_REGISTRY_LOGIN_SERVER }}/${{ secrets.IMAGE_NAME }}:latest
+
+       - name: Set AKS 
+         uses: azure/aks-set-context@v3 
+         with: 
+           resource-group: ${{ secrets.AKS_RESOURCE_GROUP }} 
+           cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+
+      
+
